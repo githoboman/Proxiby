@@ -1,0 +1,10 @@
+allowBuilds:
+  '@reown/appkit': set this to true or false
+  secp256k1: set this to true or false
+  sharp: set this to true or false
+  unrs-resolver: set this to true or false
+minimumReleaseAgeExclude:
+  - '@next/env@16.3.0-preview.0'
+  - '@next/eslint-plugin-next@16.3.0-preview.0'
+  - eslint-config-next@16.3.0-preview.0
+  - next@16.3.0-preview.0

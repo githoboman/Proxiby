@@ -1,0 +1,46 @@
+#V2
+(contract-call? .skela-registry register u"ayo")
+(contract-call? .skela-registry is-registered tx-sender)
+(contract-call? .skela-registry resolve-username u"ayo")
+(contract-call? .skela-messaging post-gm u"GM Stacks!")
+(contract-call? .skela-messaging get-gm u1)
+(contract-call? .skela-groups create-group u"Builders")
+(contract-call? .skela-groups is-member u1 tx-sender)
+(contract-call? .skela-groups get-user-groups tx-sender)
+::get_assets_maps
+(contract-call? .skela-messaging send-message (quote ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG) u"dm/ptr/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-registry register u"ayo")
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? .skela-registry register u"satoshi")
+::set_tx_sender ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+(contract-call? .skela-messaging send-message (quote ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG) u"dm/ptr/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-messaging send-group-message u1 u"grp/ptr/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? .skela-messaging send-group-message u1 u"grp/ptr/2.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-registry register u"ayo")
+(contract-call? .skela-messaging send-message 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG u"dm/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? .skela-registry register u"satoshi")
+::set_tx_sender ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+(contract-call? .skela-messaging send-message 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG u"dm/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-groups create-group u"Builders")
+(contract-call? .skela-messaging send-group-message u1 u"grp/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? .skela-messaging send-group-message u1 u"grp/2.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-registry register u"ayo")
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? .skela-registry register u"satoshi")
+(contract-call? .skela-registry is-registered 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG)
+::set_tx_sender ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+(contract-call? .skela-messaging send-message 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG u"dm/1.json" 0x00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff)
+(contract-call? .skela-registry register u"ayo")
+(contract-call? .skela-groups create-group u"Builders")
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.skela-registry register u"satoshi")
+(contract-call? 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.skela-registry is-registered 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG)
+(contract-call? 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.skela-messaging send-group-message u1 u"grp/x.json" 0x0011223344556677889900112233445566778899001122334455667788990011)
+::set_tx_sender ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+(contract-call? .skela-messaging send-message 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG u"dm/1.json" 0x0011223344556677889900112233445566778899001122334455667788990011)
+(contract-call? .skela-groups add-member u1 'ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG)
+::set_tx_sender ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG
+(contract-call? 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.skela-messaging send-group-message u1 u"grp/y.json" 0x0011223344556677889900112233445566778899001122334455667788990011)

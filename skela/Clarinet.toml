@@ -1,0 +1,27 @@
+[project]
+name = "skela"
+description = "Decentralized communication layer for Stacks — registry, messaging, groups."
+authors = ["Ayo"]
+telemetry = false
+cache_dir = "./.cache"
+requirements = []
+
+[contracts.skela-registry]
+path = "contracts/skela-registry.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.skela-groups]
+path = "contracts/skela-groups.clar"
+clarity_version = 3
+epoch = 3.1
+
+[contracts.skela-messaging]
+path = "contracts/skela-messaging.clar"
+clarity_version = 3
+epoch = 3.1
+
+[repl.analysis]
+passes = ["check_checker"]
+# gaia-pointer / content-hash are opaque off-chain references intentionally
+# stored as-is; the check-checker "unchecked data" notes on them are expected.
