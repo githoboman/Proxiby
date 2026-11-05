@@ -29,16 +29,26 @@ SKELA has been fully migrated from Stacks to **BOT Chain** to leverage:
 
 ---
 
-## 📜 Live Deployed Contracts on Bohr Testnet
+## 📜 Live Deployed Contracts on BOT Chain
 
+### 🌟 BOT Chain Mainnet (Chain ID `677`)
+| Smart Contract | Address | Explorer Link |
+|:---|:---|:---|
+| **BotChainRegistry** | `0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3` | [scan.botchain.ai/address/0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3](https://scan.botchain.ai/address/0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3) |
+| **BotChainGroups** | `0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646` | [scan.botchain.ai/address/0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646](https://scan.botchain.ai/address/0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646) |
+| **BotChainMessaging** | `0x31367402698F3b05777fB004c5A2081feC81FF0e` | [scan.botchain.ai/address/0x31367402698F3b05777fB004c5A2081feC81FF0e](https://scan.botchain.ai/address/0x31367402698F3b05777fB004c5A2081feC81FF0e) |
+
+- **Deployer Wallet:** `0x518F3fC641dFC01c48343251f67f0Dd0b349deeb`
+
+---
+
+### 🧪 Bohr Testnet (Chain ID `968`)
 | Smart Contract | Address | Explorer Link |
 |:---|:---|:---|
 | **BotChainRegistry** | `0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3` | [scan.bohr.life/address/0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3](https://scan.bohr.life/address/0xaea9960Ea4C0da854eFbaCcDa178A94720f474f3) |
 | **BotChainGroups** | `0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646` | [scan.bohr.life/address/0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646](https://scan.bohr.life/address/0xC57Bd1276cabba9B5CE650a2cA937D659CbE7646) |
 | **BotChainMessaging** | `0x31367402698F3b05777fB004c5A2081feC81FF0e` | [scan.bohr.life/address/0x31367402698F3b05777fB004c5A2081feC81FF0e](https://scan.bohr.life/address/0x31367402698F3b05777fB004c5A2081feC81FF0e) |
 
-- **Deployer Wallet:** `0x518F3fC641dFC01c48343251f67f0Dd0b349deeb`
-- **Initial Funding:** 10.0 tBOT
 - **Sample On-Chain Transfer TX:** [`0xab661f4110158cffedfa90a04c33dc037ab35a2147fd6ad48b1b95092a3d1af0`](https://scan.bohr.life/tx/0xab661f4110158cffedfa90a04c33dc037ab35a2147fd6ad48b1b95092a3d1af0)
 
 

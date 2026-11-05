@@ -120,23 +120,32 @@ async function main() {
   await downloadSoljson();
   const compiled = compileContracts();
 
-  const rpcUrl = process.env.NEXT_PUBLIC_BOT_TESTNET_RPC || 'https://rpc.bohr.life';
+  const isMainnet = process.argv.includes('mainnet') || process.env.TARGET_NETWORK === 'mainnet';
+  const networkName = isMainnet ? 'BOT Chain Mainnet' : 'BOT Chain Testnet (Bohr)';
+  const networkKey = isMainnet ? 'bot-mainnet' : 'bohr-testnet';
+  const chainId = isMainnet ? 677 : 968;
+  const currency = isMainnet ? 'BOT' : 'tBOT';
+  const rpcUrl = isMainnet
+    ? (process.env.NEXT_PUBLIC_BOT_MAINNET_RPC || 'https://rpc.botchain.ai')
+    : (process.env.NEXT_PUBLIC_BOT_TESTNET_RPC || 'https://rpc.bohr.life');
   const privateKey = process.env.PRIVATE_KEY;
 
   if (!privateKey) {
     throw new Error('PRIVATE_KEY not found in .env.local');
   }
 
-  console.log(`\n🌐 Connecting to Bohr Testnet (${rpcUrl})...`);
-  const provider = new ethers.JsonRpcProvider(rpcUrl);
+  console.log(`\n🌐 Connecting to ${networkName} (${rpcUrl})...`);
+  const fetchReq = new ethers.FetchRequest(rpcUrl);
+  fetchReq.timeout = 60000;
+  const provider = new ethers.JsonRpcProvider(fetchReq, chainId, { staticNetwork: true });
   const wallet = new ethers.Wallet(privateKey, provider);
   console.log('📍 Deployer Address:', wallet.address);
 
   const balance = await provider.getBalance(wallet.address);
-  console.log('💰 Deployer Balance:', ethers.formatEther(balance), 'tBOT');
+  console.log(`💰 Deployer Balance: ${ethers.formatEther(balance)} ${currency}`);
 
   if (balance === 0n) {
-    throw new Error('Wallet has 0 tBOT. Please fund it first at faucet.botchain.ai');
+    throw new Error(`Wallet ${wallet.address} has 0 ${currency} on ${networkName}. Please fund it before deploying.`);
   }
 
   // Deploy 1: BotChainRegistry
@@ -166,7 +175,7 @@ async function main() {
   const messagingAddress = await messaging.getAddress();
   console.log('✅ BotChainMessaging deployed to:', messagingAddress);
 
-  console.log('\n🎉 ALL CONTRACTS DEPLOYED SUCCESSFULLY TO BOHR TESTNET!');
+  console.log(`\n🎉 ALL CONTRACTS DEPLOYED SUCCESSFULLY TO ${networkName.toUpperCase()}!`);
   console.log('----------------------------------------------------');
   console.log('NEXT_PUBLIC_BOTCHAIN_REGISTRY=' + registryAddress);
   console.log('NEXT_PUBLIC_BOTCHAIN_GROUPS=' + groupsAddress);
@@ -175,8 +184,9 @@ async function main() {
 
   // Save deployed addresses and ABIs to lib/deployedContracts.json
   const deployedInfo = {
-    network: 'bohr-testnet',
-    chainId: 968,
+    network: networkKey,
+    networkName,
+    chainId,
     deployedAt: new Date().toISOString(),
     deployer: wallet.address,
     contracts: {
@@ -186,13 +196,16 @@ async function main() {
     },
   };
 
-  const contractsJsonPath = path.join(__dirname, '../lib/deployedContracts.json');
+  const contractsJsonPath = path.join(__dirname, `../lib/deployedContracts.${isMainnet ? 'mainnet.' : ''}json`);
   fs.writeFileSync(contractsJsonPath, JSON.stringify(deployedInfo, null, 2));
   console.log('💾 Saved contracts info to:', contractsJsonPath);
 
   // Update .env.local
   const envPath = path.join(__dirname, '../.env.local');
   let envContent = fs.readFileSync(envPath, 'utf8');
+  if (isMainnet) {
+    envContent = envContent.replace(/NEXT_PUBLIC_BOT_DEFAULT_NETWORK=.*/, 'NEXT_PUBLIC_BOT_DEFAULT_NETWORK=bot-mainnet');
+  }
   envContent = envContent.replace(/NEXT_PUBLIC_BOTCHAIN_REGISTRY=.*/, `NEXT_PUBLIC_BOTCHAIN_REGISTRY=${registryAddress}`);
   envContent = envContent.replace(/NEXT_PUBLIC_BOTCHAIN_GROUPS=.*/, `NEXT_PUBLIC_BOTCHAIN_GROUPS=${groupsAddress}`);
   envContent = envContent.replace(/NEXT_PUBLIC_BOTCHAIN_MESSAGING=.*/, `NEXT_PUBLIC_BOTCHAIN_MESSAGING=${messagingAddress}`);
